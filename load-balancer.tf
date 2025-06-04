@@ -7,7 +7,7 @@ resource "aws_lb" "nginx_lb" {
   load_balancer_type = "application"
 
   security_groups = [aws_security_group.load_balancer_security_group.id]
-  subnets         = [aws_subnet.public_subnet.id]
+  subnets         = [aws_subnet.public_subnet.id, aws_subnet.public_subnet_2.id]
 
   tags = {
     Name = "PROG8830_LB"
