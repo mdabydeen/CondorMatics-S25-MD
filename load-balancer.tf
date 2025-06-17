@@ -11,7 +11,6 @@ resource "aws_lb" "nginx_lb" {
 
   tags = var.resource_tags
 
-
 }
 
 

@@ -4,10 +4,9 @@ resource "aws_instance" "nginx1" {
   instance_type = var.instance_type
 
   cpu_options {
-    core_count = var.core_count
+    core_count       = var.core_count
+    threads_per_core = var.thread_count
   }
-
-  iam_instance_profile = aws_iam_instance_profile.nginx_profile.name
 
   subnet_id       = aws_subnet.public_subnet.id
   security_groups = [aws_security_group.public_security_group.id]
@@ -15,8 +14,8 @@ resource "aws_instance" "nginx1" {
 
   user_data = file("./initial-server-setup.sh")
 
-   tags = {
-    "Name": "nginx2"
+  tags = {
+    "Name" : "nginx2"
   }
 
 
@@ -27,7 +26,10 @@ resource "aws_instance" "nginx2" {
   ami           = nonsensitive(data.aws_ssm_parameter.amzn2_linux.value)
   instance_type = var.instance_type
 
-  iam_instance_profile = aws_iam_instance_profile.nginx_profile.name
+  cpu_options {
+    core_count       = var.core_count
+    threads_per_core = var.thread_count
+  }
 
   subnet_id       = aws_subnet.public_subnet_2.id
   security_groups = [aws_security_group.public_security_group.id]
@@ -35,7 +37,7 @@ resource "aws_instance" "nginx2" {
   user_data = file("./initial-server-setup.sh")
 
   tags = {
-    "Name": "nginx2"
+    "Name" : "nginx2"
   }
 
 }
