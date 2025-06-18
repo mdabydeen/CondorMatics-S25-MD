@@ -12,7 +12,7 @@ aws s3 cp s3://${aws_s3_bucket.web_bucket.id}/webcontent/campus.jpg  /home/ec2-u
 aws s3 cp s3://${aws_s3_bucket.web_bucket.id}/webcontent/students.jpg  /home/ec2-user/students.jpg
 aws s3 cp s3://${aws_s3_bucket.web_bucket.id}/webcontent/programs.jpg  /home/ec2-user/programs.jpg
 
-sudo rm /usr/share/nginx/html/index.html
+# sudo rm /usr/share/nginx/html/index.html
 
 sudo cp /home/ec2-user/index.html  /usr/share/nginx/html/index.html
 sudo cp /home/ec2-user/styles.css  /usr/share/nginx/html/styles.css
