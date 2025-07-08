@@ -1,3 +1,4 @@
+name: Terraform CI - CD Deployment
 # trigger - when it should happen 
 on:
     push: 
@@ -5,34 +6,33 @@ on:
             - main
 
 env: 
-    AWS_ACCESS_KEY_ID: ${{ AWS_ACCESS_KEY_ID }}
-    AWS_SECRET_ACCESS_KEY: ${{ AWS_SECRET_ACCESS_KEY }}
-    AWS_SESSION_TOKEN: ${{ AWS_SESSION_TOKEN }}
-    AWS_REGION: ${{ AWS_REGION }}
-
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+    AWS_REGION: ${{ secrets.AWS_REGION }}
 
 jobs: 
     provision-infrastructure: 
         name: provision-infra-using-terraform
         runs-on: ubuntu-latest
 
-    steps: 
-        - name: Checkout Repository
-        uses: actions/checkout@v2
-        
-        - name: Setting up the Terraform version
-        uses: hashicorp/setup-terraform@v1
-        with: 
-            terraform_version: 1.12.2
+        steps: 
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+            
+            - name: Setting up the database
+              uses: hashicorp/setup-terraform@v1
+              with: 
+                terraform_version: 1.12.2
 
-        - name: Terraform init 
-        run: terraform init
+            - name: Terraform init 
+              run: terraform init
 
-        - name: Terraform format 
-        run: terraform fmt 
+            - name: Terraform format 
+              run: terraform fmt 
 
-        - name: Terraform Plan 
-        run: terraform plan 
+            - name: Terraform Plan 
+              run: terraform plan 
 
-        - name: Terraform Apply
-        run: terraform apply
+            - name: Terraform Apply
+              run: terraform apply
