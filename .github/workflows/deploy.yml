@@ -35,4 +35,4 @@ jobs:
               run: terraform plan -var 'core_count=1' -var 'thread_count=2'
 
             - name: Terraform Apply
-              run: terraform apply -var 'core_count=1' -var 'thread_count=2'
+              run: terraform apply -var 'core_count=1' -var 'thread_count=2' -auto-approve
