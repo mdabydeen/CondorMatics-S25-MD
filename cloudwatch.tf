@@ -19,7 +19,7 @@ resource "aws_cloudwatch_dashboard" "condormatics-dashboard" {
           period = 100
           stat   = "Average"
           region = "us-east-1"
-          title  = "${aws_instance.nginx1.id} - CPU Utilization"
+          title  = "${module.web_servers.nginx1.id} - CPU Utilization"
         }
       }
     ]
