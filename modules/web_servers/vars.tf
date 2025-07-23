@@ -15,3 +15,12 @@ variable "thread_count" {
 variable "s3_bucket_id" {
   type = string
 }
+
+variable "security_group_id" {
+  type = string
+}
+
+variable "public_subnet_id" {
+  # aws_subnet.public_subnet.id
+  type = string
+}
